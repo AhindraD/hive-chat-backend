@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { Socket } = require("socket.io");
+const { Server } = require("socket.io");
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -80,15 +80,15 @@ function authenticateRequest(request, response, next) {
 }
 
 
-//SOCKET_IO
-// const io = new Socket(httpServer);
-// let allRooms = {};
-// io.on("connection", (socket) => {
-//     console.log("Client Connected: ", socket.id);
-//     socket.emit("ID", socket.id);
+SOCKET_IO
+const io = new Server(httpServer);
+let allRooms = {};
+io.on("connection", (socket) => {
+    console.log("Client Connected: ", socket.id);
+    socket.emit("ID", socket.id);
 
 
-//     socket.on("disconnect", () => {
-//         console.log(`Client Disconnected: `, socket.id);
-//     });
-// })
+    socket.on("disconnect", () => {
+        console.log(`Client Disconnected: `, socket.id);
+    });
+})
